@@ -15,10 +15,10 @@
 
     <header>
       <nav>
-        <a href="/" class="logo">lewis</a>
+        <a href="./" class="logo">lewis</a>
         <ul class="nav-links">
-          <li><a href="/" class="active">Home</a></li>
-          <li><a href="/articles.html">Articles</a></li>
+          <li><a href="./" class="active">Home</a></li>
+          <li><a href="./articles.html">Articles</a></li>
           <li><a href="https://github.com/lewislulu" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -66,7 +66,7 @@
         <ul class="article-list" id="recent-articles">
           <!-- Populated by JS -->
         </ul>
-        <a href="/articles.html" class="back-link">All articles &rarr;</a>
+        <a href="./articles.html" class="back-link">All articles &rarr;</a>
       </section>
     </main>
 
@@ -91,7 +91,7 @@
       recent.forEach(a => {
         const li = document.createElement('li');
         li.innerHTML = `
-          <a href="/article.html?slug=${a.slug}">
+          <a href="./article.html?slug=${a.slug}">
             <span class="article-title">${a.title}</span>
             <span class="article-date">${a.date}</span>
           </a>`;

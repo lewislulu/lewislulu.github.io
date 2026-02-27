@@ -20,10 +20,10 @@
 
     <header>
       <nav>
-        <a href="/" class="logo">lewis</a>
+        <a href="./" class="logo">lewis</a>
         <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/articles.html" class="active">Articles</a></li>
+          <li><a href="./">Home</a></li>
+          <li><a href="./articles.html" class="active">Articles</a></li>
           <li><a href="https://github.com/lewislulu" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -34,7 +34,7 @@
         <div class="loading">Loading...</div>
       </div>
       <div class="article-content" id="article-content"></div>
-      <a href="/articles.html" class="back-link">&larr; Back to articles</a>
+      <a href="./articles.html" class="back-link">&larr; Back to articles</a>
     </main>
 
     <footer style="margin-top:48px;">
@@ -62,7 +62,7 @@
       document.title = `${article.title} - Lewis`;
 
       try {
-        const res = await fetch(`/articles/${slug}.md`);
+        const res = await fetch(`./articles/${slug}.md`);
         if (!res.ok) throw new Error('Failed to load');
         let md = await res.text();
 

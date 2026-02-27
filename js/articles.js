@@ -5,9 +5,9 @@
  */
 window.ARTICLES = [
   {
-    slug: 'attention-is-all-you-need',
-    title: 'Attention Is All You Need — A Brief Walk-through',
-    description: 'Breaking down the Transformer architecture, the self-attention mechanism, and why it changed everything.',
+    slug: 'the-true-wisdom',
+    title: 'The True Wisdom',
+    description: 'The true wisdom is knowing yourself knowing nothing.',
     date: '2025-02-27',
   },
 ];

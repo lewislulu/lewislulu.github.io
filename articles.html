@@ -14,10 +14,10 @@
 
     <header>
       <nav>
-        <a href="/" class="logo">lewis</a>
+        <a href="./" class="logo">lewis</a>
         <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/articles.html" class="active">Articles</a></li>
+          <li><a href="./">Home</a></li>
+          <li><a href="./articles.html" class="active">Articles</a></li>
           <li><a href="https://github.com/lewislulu" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -56,7 +56,7 @@
       window.ARTICLES.forEach(a => {
         const li = document.createElement('li');
         li.innerHTML = `
-          <a href="/article.html?slug=${a.slug}">
+          <a href="./article.html?slug=${a.slug}">
             <div>
               <span class="article-title">${a.title}</span>
               <div class="article-desc">${a.description || ''}</div>
