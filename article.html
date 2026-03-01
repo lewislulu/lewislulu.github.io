@@ -14,6 +14,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <!-- marked for markdown -->
   <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <!-- Mermaid for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -48,6 +50,14 @@
 
   <script src="js/articles.js"></script>
   <script>
+    // Initialize mermaid with light theme
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'Inter, sans-serif',
+    });
+
     document.addEventListener('DOMContentLoaded', async () => {
       const params = new URLSearchParams(window.location.search);
       const slug = params.get('slug');
@@ -71,6 +81,14 @@
           const end = md.indexOf('---', 3);
           if (end !== -1) md = md.slice(end + 3).trim();
         }
+
+        // Protect mermaid code blocks from marked processing
+        const mermaidBlocks = [];
+        md = md.replace(/```mermaid\n([\s\S]*?)```/g, (_, code) => {
+          const id = mermaidBlocks.length;
+          mermaidBlocks.push(code.trim());
+          return `<div class="mermaid-placeholder" data-mermaid-id="${id}"></div>`;
+        });
 
         // Protect math blocks from marked: replace $$ ... $$ and $ ... $
         const mathBlocks = [];
@@ -104,6 +122,19 @@
           <div class="article-meta">${article.date}</div>`;
 
         document.getElementById('article-content').innerHTML = html;
+
+        // Render mermaid diagrams
+        const mermaidEls = document.querySelectorAll('.mermaid-placeholder');
+        for (const el of mermaidEls) {
+          const id = parseInt(el.getAttribute('data-mermaid-id'));
+          const container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = mermaidBlocks[id];
+          el.replaceWith(container);
+        }
+        if (mermaidEls.length > 0) {
+          await mermaid.run({ nodes: document.querySelectorAll('.mermaid') });
+        }
 
         // Render math placeholders with KaTeX
         document.querySelectorAll('.math-placeholder').forEach(el => {
